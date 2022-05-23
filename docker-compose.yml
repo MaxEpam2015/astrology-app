@@ -1,0 +1,64 @@
+version: '3'
+services:
+    nginx:
+        build:
+            context: ./
+            dockerfile: docker/nginx.docker
+        container_name: astro_nginx
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/ssl:/etc/nginx/ssl
+        ports:
+            - "8080:443"
+        links:
+            - php-fpm
+    php-fpm:
+        build:
+            context: ./
+            dockerfile: docker/php-fpm.docker
+        container_name: astro_php-fpm
+        volumes:
+            - ./:/var/www
+        links:
+            - mysql
+            - redis
+        environment:
+            - "DB_PORT=3306"
+            - "DB_HOST=mysql"
+            - "REDIS_PORT=6379"
+            - "REDIS_HOST=redis"
+    php-cli:
+        build:
+            context: ./
+            dockerfile: docker/php-cli.docker
+        container_name: astro_php-cli
+        volumes:
+            - ./:/var/www
+        links:
+            - mysql
+            - redis
+        environment:
+            - "DB_PORT=3306"
+            - "DB_HOST=mysql"
+            - "REDIS_PORT=6379"
+            - "REDIS_HOST=redis"
+        tty: true
+    mysql:
+        image: mysql:8.0
+        container_name: astro_mysql
+        tty: true
+        volumes:
+            - /opt/dbdata:/var/lib/mysql
+        environment:
+            - "MYSQL_ROOT_PASSWORD=secret"
+            - "MYSQL_USER=astro"
+            - "MYSQL_PASSWORD=secret"
+            - "MYSQL_DATABASE=astro_db"
+        ports:
+            - "${DB_PORT}:3306"
+    redis:
+        image: redis:3.0
+        container_name: astro_redis
+        ports:
+            - "63791:6379"
+
