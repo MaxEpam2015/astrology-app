@@ -1,5 +1,5 @@
 # astrology-app
-![img.png](public/astro.png)
+![img.png](public/images/astro.png)
 
 ## Guide for building project (Linux|Ubuntu 20.04.4):
 
@@ -16,10 +16,6 @@ make up
 composer i 
 ```
 
-```bash
-cp -v .env.example .env
-```
-
 ### If you have installed "php": "^8.0":
 ```bash
 php artisan key:generate
@@ -31,4 +27,8 @@ docker exec -it astro_php-fpm bash
 ```
 ```bash
 php artisan key:generate
+```
+
+```bash
+cp -v .env.example .env
 ```
