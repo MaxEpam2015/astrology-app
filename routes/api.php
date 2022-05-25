@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AstrologerController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('astrologers', AstrologerController::class)->only([
     'index', 'show'
 ])->parameters([
-    'astrologers' => 'astrologers:uuid',
+    'astrologers' => 'uuid',
 ]);
+Route::post('orders', [OrderController::class, 'store']);
+Route::post('orders/checkout', [OrderController::class, 'checkout']);

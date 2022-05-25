@@ -25,10 +25,10 @@ class AstrologerController extends Controller
     }
 
 
-    public function show(Astrologer $astrologer): JsonResponse
+    public function show(string $uuid): JsonResponse
     {
-        $astrologer = $astrologer->with(['services:' . $this->servicesShowColumns])
-            ->first($this->shownAstrologersColumns);
+        $astrologer = Astrologer::where('uuid', $uuid)->with(['services:' . $this->servicesShowColumns])
+            ->firstOrFail();
         unset($astrologer->uuid);
 
         return new JsonResponse($astrologer);
