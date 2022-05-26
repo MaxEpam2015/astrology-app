@@ -11,13 +11,45 @@ git clone https://github.com/MaxEpam2015/astrology-app.git
 #### installed docker & docker-compose 
 #### installed php >=8.0.2
 
-## Building project command and run ```php artisan queue:work``` :
+# Building project command and run ```php artisan queue:work``` :
 
 ```bash
 make i
 ```
 
-#### Other available commands
+# Manually building project:
+
+
+```bash
+make up
+```
+
+## Composer installation:
+```bash
+composer i 
+```
+
+## Application Key generation
+### If you have installed "php": "^8.0":
+```bash
+php artisan key:generate
+```
+
+### Else:
+```bash
+docker exec -it astro_php-fpm bash 
+php artisan key:generate
+cp -v .env.example .env
+```
+
+### Test db creation:
+```
+docker exec -it  mysql bash
+mysql -uroot -p
+CREATE DATABASE astro_db_test;
+```
+
+# Other available commands
 
 ```text
 Possible commands are:

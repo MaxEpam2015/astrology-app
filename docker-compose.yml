@@ -57,7 +57,7 @@ services:
             - "MYSQL_PASSWORD=secret"
             - "MYSQL_DATABASE=astro_db"
         ports:
-            - "${DB_PORT}:3306"
+            - "3306:3306"
     redis:
         image: redis:3.0
         container_name: astro_redis
