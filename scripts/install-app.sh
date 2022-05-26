@@ -11,5 +11,8 @@ if [[ -f .env.testing.example ]]; then
 fi
 
 /usr/local/bin/composer i
+
 php artisan key:generate
+
+make queue
 

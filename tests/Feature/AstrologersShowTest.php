@@ -56,7 +56,7 @@ class AstrologersShowTest extends TestCase
             ]);
     }
 
-    public function testWrongUuidTest(): void
+    public function testWrongUuid(): void
     {
         $this->sendRequest('GET', self::URI, $this->faker->uuid)
             ->assertNotFound()
@@ -65,7 +65,7 @@ class AstrologersShowTest extends TestCase
             ]);
     }
 
-    public function testWrongUriTest(): void
+    public function testWrongUri(): void
     {
         $this->sendRequest('GET', sha1(self::URI), $this->astrologer->uuid)
             ->assertNotFound()

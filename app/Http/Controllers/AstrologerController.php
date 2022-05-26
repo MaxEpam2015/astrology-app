@@ -2,37 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Astrologer;
+use App\Action\{AstrologerIndex, AstrologerShow};
 use Illuminate\Http\JsonResponse;
 
 class AstrologerController extends Controller
 {
-    const PER_PAGE = 3;
-    private array $hiddenAstrologersColumns = ['biography', 'email', 'uuid'];
-    private array $shownAstrologersColumns = ['name', 'biography', 'photo', 'uuid'];
-
-    private string $servicesIndexColumns = 'name';
-    private string $servicesShowColumns = 'name,price';
-
-    public function index(): JsonResponse
+    public function index(AstrologerIndex $astrologerIndex): JsonResponse
     {
-        $astrologers = Astrologer::query()->with(['services:' . $this->servicesIndexColumns])
-            ->cursorPaginate(self::PER_PAGE);
-        $astrologers->setCollection($astrologers->getCollection()
-            ->makeHidden($this->hiddenAstrologersColumns));
+        $astrologers = $astrologerIndex->perform();
 
         return new JsonResponse($astrologers);
     }
 
-
-    public function show(string $uuid): JsonResponse
+    public function show(string $uuid, AstrologerShow $astrologerShow): JsonResponse
     {
-        $astrologer = Astrologer::where('uuid', $uuid)->with(['services:' . $this->servicesShowColumns])
-            ->firstOrFail();
-        unset($astrologer->uuid);
+        $astrologer = $astrologerShow->perform($uuid);
 
         return new JsonResponse($astrologer);
     }
-
-
 }

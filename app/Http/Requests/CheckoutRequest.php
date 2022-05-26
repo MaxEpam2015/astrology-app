@@ -5,8 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * @property string $email
- * @property string $name
+ * @property string $order_uuid
  */
 class CheckoutRequest extends FormRequest
 {

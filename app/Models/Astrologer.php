@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * @method static Order firstWhere($column, $operator = null, $value = null, $boolean = 'and')
+ *
+ * @property string $name
+ */
 class Astrologer extends Model
 {
     use HasFactory;

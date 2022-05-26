@@ -12,14 +12,14 @@ class OrderController extends Controller
 {
     public function store(StoreRequest $storeRequest, StoreOrder $storeOrder): JsonResponse
     {
-        $storeOrder->perform($storeRequest);
+        $storeOrderResponse = $storeOrder->perform($storeRequest);
 
-        return new JsonResponse(201);
+        return new JsonResponse($storeOrderResponse);
     }
 
-    public function checkout(CheckoutRequest $paymentRequest, Payment $payment): JsonResponse
+    public function checkout(CheckoutRequest $checkoutRequest, Payment $payment): JsonResponse
     {
-        $paymentResponse = $payment->checkout($paymentRequest->email, $paymentRequest->name);
+        $paymentResponse = $payment->checkout($checkoutRequest->order_uuid);
 
         return new JsonResponse($paymentResponse);
     }

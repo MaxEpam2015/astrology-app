@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('astrologers', AstrologerController::class)->only([
+Route::apiResource('astrologers', AstrologerController::class)->only([
     'index', 'show'
 ])->parameters([
     'astrologers' => 'uuid',
