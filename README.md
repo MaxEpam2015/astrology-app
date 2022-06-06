@@ -11,7 +11,7 @@ git clone https://github.com/MaxEpam2015/astrology-app.git
 #### installed docker & docker-compose 
 #### installed php >=8.0.2
 
-# Building project command and run ```php artisan queue:work``` :
+# Building project command:
 
 ```bash
 make i
@@ -43,7 +43,7 @@ cp -v .env.example .env
 ```
 
 ### Test db creation:
-```
+```bash
 docker exec -it  mysql bash
 mysql -uroot -p
 CREATE DATABASE astro_db_test;

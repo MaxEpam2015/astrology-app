@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Action\StoreOrder;
+use App\Repository\StoreOrder;
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Requests\StoreRequest;
 use Illuminate\Http\JsonResponse;

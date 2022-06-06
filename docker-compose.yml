@@ -3,11 +3,11 @@ services:
     nginx:
         build:
             context: ./
-            dockerfile: docker/nginx.docker
+            dockerfile: .docker/nginx.docker
         container_name: astro_nginx
         volumes:
             - ./:/var/www
-            - ./docker/nginx/ssl:/etc/nginx/ssl
+            - ./.docker/nginx/ssl:/etc/nginx/ssl
         ports:
             - "8080:443"
         links:
@@ -15,7 +15,7 @@ services:
     php-fpm:
         build:
             context: ./
-            dockerfile: docker/php-fpm.docker
+            dockerfile: .docker/php-fpm.docker
         container_name: astro_php-fpm
         volumes:
             - ./:/var/www
@@ -30,7 +30,7 @@ services:
     php-cli:
         build:
             context: ./
-            dockerfile: docker/php-cli.docker
+            dockerfile: .docker/php-cli.docker
         container_name: astro_php-cli
         volumes:
             - ./:/var/www
@@ -50,7 +50,7 @@ services:
         command: --init-file /var/lib/mysql/scripts/create-test-db.sql
         volumes:
             - /opt/dbdata:/var/lib/mysql
-            - ./scripts/create-test-db.sql:/var/lib/mysql/scripts/create-test-db.sql
+            - ./.scripts/create-test-db.sql:/var/lib/mysql/scripts/create-test-db.sql
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_USER=astro"

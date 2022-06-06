@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Action;
+namespace App\Repository;
 
+use App\Dto\StoreOrderDto;
 use App\Http\Requests\StoreRequest;
 use App\Models\Order;
 use Illuminate\Support\Str;
@@ -17,6 +18,6 @@ class StoreOrder
             'uuid' => Str::uuid(),
         ]);
 
-        return ['order_uuid' => $createdOrder->uuid];
+        return (new StoreOrderDto($createdOrder->uuid))->toArray();
     }
 }
