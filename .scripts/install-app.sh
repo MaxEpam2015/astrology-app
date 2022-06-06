@@ -15,6 +15,3 @@ fi
 php artisan key:generate
 
 make perm
-
-make queue
-

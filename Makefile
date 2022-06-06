@@ -1,7 +1,7 @@
 i: up script
 
 script:
-	./scripts/install-app.sh
+	./.scripts/install-app.sh
 
 up: memory
 	docker-compose up -d
