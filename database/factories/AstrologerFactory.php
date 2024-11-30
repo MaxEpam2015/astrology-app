@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AstrologerFactory extends Factory
 {
-    public function definition()
+    public function definition(): array
     {
         return [
             'uuid' => $this->faker->uuid,

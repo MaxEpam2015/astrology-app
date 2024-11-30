@@ -2,14 +2,14 @@
 
 namespace App\Repository;
 
-use App\Dto\StoreOrderDto;
 use App\Http\Requests\StoreRequest;
 use App\Models\Order;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
 class StoreOrder
 {
-    public function perform(StoreRequest $storeRequest): array
+    public function perform(StoreRequest $storeRequest): string
     {
         $createdOrder = Order::create([
             'name' => $storeRequest->name,
@@ -18,6 +18,6 @@ class StoreOrder
             'uuid' => Str::uuid(),
         ]);
 
-        return (new StoreOrderDto($createdOrder->uuid))->toArray();
+        return $createdOrder->uuid->toString();
     }
 }

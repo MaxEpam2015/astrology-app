@@ -9,7 +9,7 @@ services:
             - ./:/var/www
             - ./.docker/nginx/ssl:/etc/nginx/ssl
         ports:
-            - "8080:443"
+            - "8080:80"
         links:
             - php-fpm
     php-fpm:
@@ -47,10 +47,6 @@ services:
         image: mysql:8.0
         container_name: astro_mysql
         tty: true
-        command: --init-file /var/lib/mysql/scripts/create-test-db.sql
-        volumes:
-            - /opt/dbdata:/var/lib/mysql
-            - ./.scripts/create-test-db.sql:/var/lib/mysql/scripts/create-test-db.sql
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_USER=astro"

@@ -14,7 +14,7 @@ class OrderController extends Controller
     {
         $storeOrderResponse = $storeOrder->perform($storeRequest);
 
-        return new JsonResponse($storeOrderResponse);
+        return new JsonResponse(['uuid' => $storeOrderResponse]);
     }
 
     public function checkout(CheckoutRequest $checkoutRequest, Payment $payment): JsonResponse

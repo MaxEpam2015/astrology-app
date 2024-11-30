@@ -17,9 +17,8 @@ class MockedPayment implements PaymentInterface
             'user_name' => $order->name,
             'astrologer_name' => $order->astrologer->name,
         ];
-        Log::info("[Queue][Checkout] Prepare to send order_uuid {$uuid} to google-sheets", $payload);
         Payment::dispatch($payload);
-        Log::info("[Queue][Checkout] Finished sending order_uuid {$uuid} to google-sheets", $payload);
+        Log::info("[Queue][Checkout] Sent in queue order_uuid {$uuid} to google-sheets", $payload);
 
         return ['message' => __('payment.successful')];
     }
