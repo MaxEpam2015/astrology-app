@@ -9,7 +9,7 @@ services:
             - ./:/var/www
             - ./.docker/nginx/ssl:/etc/nginx/ssl
         ports:
-            - "8080:80"
+            - "8080:443"
         links:
             - php-fpm
     php-fpm:
@@ -47,6 +47,8 @@ services:
         image: mysql:8.0
         container_name: astro_mysql
         tty: true
+        volumes:
+            - ./.scripts/create-test-db.sql:/docker-entrypoint-initdb.d/create-test-db.sql
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_USER=astro"

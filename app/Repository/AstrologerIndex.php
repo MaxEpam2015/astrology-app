@@ -7,7 +7,7 @@ use Illuminate\Contracts\Pagination\CursorPaginator;
 
 class AstrologerIndex
 {
-    const PER_PAGE = 3;
+    public const PER_PAGE = 3;
     private array $hiddenAstrologersColumns = ['biography', 'email', 'uuid'];
     private string $servicesIndexColumns = 'name';
 

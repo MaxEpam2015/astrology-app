@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -9,9 +8,8 @@ use Tests\TestCase;
 
 class AstrologersIndexTest extends TestCase
 {
-    const URI = 'api/astrologers';
-
     use RefreshDatabase;
+    public const URI = 'api/astrologers';
 
     protected bool $seed = true;
 

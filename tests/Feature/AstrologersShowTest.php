@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests\Feature;
 
 use App\Models\Astrologer;
@@ -12,9 +11,10 @@ use Tests\TestCase;
 
 class AstrologersShowTest extends TestCase
 {
-    use WithFaker, RefreshDatabase;
+    use WithFaker;
+    use RefreshDatabase;
 
-    const URI = 'api/astrologers';
+    public const URI = 'api/astrologers';
 
     protected bool $seed = true;
 
@@ -30,7 +30,8 @@ class AstrologersShowTest extends TestCase
             ]))
             ->create([
                 'name' => $this->faker->name,
-            ]);;
+            ]);
+        ;
     }
 
     public function testOk(): void

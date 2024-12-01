@@ -6,7 +6,6 @@ use App\Contracts\Payment as PaymentInterface;
 use App\Payment\MockedPayment;
 use Illuminate\Support\ServiceProvider;
 
-
 class PaymentProvider extends ServiceProvider
 {
     public function register(): void
