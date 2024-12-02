@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\Contracts\Payment as PaymentInterface;
-use App\Payment\MockedPayment;
+use App\Enums\PaymentMethod;
+use App\Services\Payment\MockedPayment;
+use App\Services\Payment\PaymentInterface as PaymentInterface;
 use Illuminate\Support\ServiceProvider;
 
 class PaymentProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class PaymentProvider extends ServiceProvider
         $this->app->bind(PaymentInterface::class, function () {
             $paymentProvider = config('payment.provider');
             $payment = match ($paymentProvider) {
-                'MockedPayment' => app()->make(MockedPayment::class),
+                PaymentMethod::MOCKED_PAYMENT->value => app()->make(MockedPayment::class),
             };
             if (empty($payment)) {
                 throw new \Exception("Payment method {$paymentProvider} not found");

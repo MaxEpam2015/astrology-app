@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Services\Payment;
 
-interface Payment
+interface PaymentInterface
 {
     public function checkout(string $uuid): array;
 }

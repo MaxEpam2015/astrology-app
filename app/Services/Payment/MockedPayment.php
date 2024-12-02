@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Payment;
+namespace App\Services\Payment;
 
-use App\Contracts\Payment as PaymentInterface;
 use App\Jobs\Payment;
 use App\Models\Order;
+use App\Services\Payment\PaymentInterface as PaymentInterface;
 use Illuminate\Support\Facades\Log;
 
 class MockedPayment implements PaymentInterface

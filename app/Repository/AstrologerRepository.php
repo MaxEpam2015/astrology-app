@@ -5,13 +5,14 @@ namespace App\Repository;
 use App\Models\Astrologer;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 
-class AstrologerIndex
+class AstrologerRepository
 {
+    private string $servicesShowColumns = 'name,price';
     public const PER_PAGE = 3;
     private array $hiddenAstrologersColumns = ['biography', 'email', 'uuid'];
     private string $servicesIndexColumns = 'name';
 
-    public function perform(): CursorPaginator
+    public function index(): CursorPaginator
     {
         $astrologers = Astrologer::query()->with(['services:' . $this->servicesIndexColumns])
             ->cursorPaginate(self::PER_PAGE);
@@ -19,5 +20,14 @@ class AstrologerIndex
             ->makeHidden($this->hiddenAstrologersColumns));
 
         return $astrologers;
+    }
+
+    public function show(string $uuid): Astrologer
+    {
+        $astrologer = Astrologer::where('uuid', $uuid)->with(['services:' . $this->servicesShowColumns])
+            ->firstOrFail();
+        unset($astrologer->uuid);
+
+        return $astrologer;
     }
 }

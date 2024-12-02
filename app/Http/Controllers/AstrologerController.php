@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\{AstrologerIndex, AstrologerShow};
+use App\Repository\{AstrologerRepository, AstrologerShow};
 use Illuminate\Http\JsonResponse;
 
 class AstrologerController extends Controller
 {
-    public function index(AstrologerIndex $astrologerIndex): JsonResponse
+    public function __construct(protected AstrologerRepository $astrologerRepository)
     {
-        $astrologers = $astrologerIndex->perform();
+    }
+
+    public function index(): JsonResponse
+    {
+        $astrologers = $this->astrologerRepository->index();
 
         return new JsonResponse($astrologers);
     }
 
-    public function show(string $uuid, AstrologerShow $astrologerShow): JsonResponse
+    public function show(string $uuid): JsonResponse
     {
-        $astrologer = $astrologerShow->perform($uuid);
+        $astrologer = $this->astrologerRepository->show($uuid);
 
         return new JsonResponse($astrologer);
     }

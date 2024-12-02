@@ -4,8 +4,8 @@ namespace App\Repository;
 
 use App\Http\Requests\StoreRequest;
 use App\Models\Order;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
+use Ramsey\Uuid\UuidInterface;
 
 class StoreOrder
 {
@@ -18,6 +18,9 @@ class StoreOrder
             'uuid' => Str::uuid(),
         ]);
 
-        return $createdOrder->uuid->toString();
+        /** @var UuidInterface $orderUuid */
+        $orderUuid = $createdOrder->uuid;
+
+        return $orderUuid->toString();
     }
 }
