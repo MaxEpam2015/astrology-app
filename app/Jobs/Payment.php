@@ -18,12 +18,15 @@ class Payment implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    /**
+     * @param array<int, array{email: string, user_name: string, astrologer_name: string}> $payload
+     */
     public function __construct(
-        private array $payload
+        private readonly array $payload
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         try {
             Sheets::spreadsheet(config('google.post_spreadsheet_id'))
@@ -33,6 +36,5 @@ class Payment implements ShouldQueue
         } catch (Throwable $e) {
             Log::error('Exception occurred: ' . $e->getMessage() . ' ' . $e->getTraceAsString());
         }
-
     }
 }

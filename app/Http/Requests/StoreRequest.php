@@ -11,6 +11,9 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class StoreRequest extends FormRequest
 {
+    /**
+     * @return array<string, string|string[]>
+     */
     public function rules(): array
     {
         return [

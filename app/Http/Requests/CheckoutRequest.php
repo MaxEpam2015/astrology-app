@@ -9,6 +9,9 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class CheckoutRequest extends FormRequest
 {
+    /**
+     * @return array<string, string|string[]>
+     */
     public function rules(): array
     {
         return [

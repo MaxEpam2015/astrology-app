@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\{AstrologerRepository, AstrologerShow};
+use App\Repository\AstrologerRepository;
 use Illuminate\Http\JsonResponse;
 
 class AstrologerController extends Controller

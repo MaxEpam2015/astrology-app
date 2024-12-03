@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @method static Order create(array $attributes = [])
+ * @method static Order create(string[] $attributes = [])
  * @method static Order firstWhere($column, $operator = null, $value = null, $boolean = 'and')
  *
  * @property string $uuid
@@ -20,7 +20,7 @@ class Order extends Model
     use HasFactory;
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'name',
