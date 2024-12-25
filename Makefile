@@ -1,7 +1,7 @@
 i: up script
 
 script:
-	./.scripts/install-app.sh
+	./.docker/scripts/copy-envs.sh
 
 up:
 	docker-compose up -d

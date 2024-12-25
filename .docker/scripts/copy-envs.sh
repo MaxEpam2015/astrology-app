@@ -10,8 +10,8 @@ if [[ -f .env.testing.example ]]; then
   cp -v .env.testing.example .env.testing
 fi
 
-/usr/local/bin/composer i
+#/usr/local/bin/composer i
 
-php artisan key:generate
+#php artisan key:generate
 
-make perm
+#make perm
