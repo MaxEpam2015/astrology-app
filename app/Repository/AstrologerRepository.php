@@ -20,9 +20,6 @@ class AstrologerRepository
      */
     public function index(): CursorPaginator
     {
-        /**
-//         * @var Collection $astrologers
-         */
         $astrologers = Astrologer::query()->with(['services:' . $this->servicesIndexColumns])
             ->cursorPaginate(self::PER_PAGE);
         $astrologers->setCollection($astrologers->getCollection()
