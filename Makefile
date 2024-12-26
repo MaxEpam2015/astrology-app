@@ -1,7 +1,7 @@
 i: up script
 
 script:
-	./.docker/scripts/copy-envs.sh
+	./.docker/scripts/install-app.sh
 
 up:
 	docker-compose up -d
@@ -17,7 +17,6 @@ test:
 
 queue:
 	docker-compose exec php-cli php artisan queue:work
-
 
 perm:
 	sudo chmod -R ug+rwx storage bootstrap/cache

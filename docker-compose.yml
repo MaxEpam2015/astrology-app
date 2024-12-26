@@ -3,7 +3,7 @@ services:
     nginx:
         build:
             context: ./
-            dockerfile: .docker/nginx.docker
+            dockerfile: .docker/nginx/nginx.docker
         container_name: astro_nginx
         volumes:
             - ./:/var/www
@@ -12,10 +12,11 @@ services:
             - "8080:80"
         links:
             - php-fpm
+
     php-fpm:
         build:
             context: ./
-            dockerfile: .docker/php-fpm.docker
+            dockerfile: .docker/php/php-fpm.docker
         container_name: astro_php-fpm
         volumes:
             - ./:/var/www
@@ -30,7 +31,7 @@ services:
     php-cli:
         build:
             context: ./
-            dockerfile: .docker/php-cli.docker
+            dockerfile: .docker/php/php-cli.docker
         container_name: astro_php-cli
         volumes:
             - ./:/var/www
@@ -43,6 +44,7 @@ services:
             - "REDIS_PORT=6379"
             - "REDIS_HOST=redis"
         tty: true
+
     mysql:
         image: mysql:8.0
         container_name: astro_mysql
@@ -56,6 +58,7 @@ services:
             - "MYSQL_DATABASE=astro_db"
         ports:
             - "3306:3306"
+
     redis:
         image: redis:3.0
         container_name: astro_redis

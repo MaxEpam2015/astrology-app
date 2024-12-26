@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Models\Astrologer;
 use Illuminate\Contracts\Pagination\CursorPaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 class AstrologerRepository
 {
