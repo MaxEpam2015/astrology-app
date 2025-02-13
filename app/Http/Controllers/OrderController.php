@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Requests\StoreRequest;
-use App\Repository\StoreOrder;
+use App\Models\Order;
 use App\Services\Payment\PaymentInterface;
 use Illuminate\Http\JsonResponse;
 
 class OrderController extends Controller
 {
-    public function store(StoreRequest $storeRequest, StoreOrder $storeOrder): JsonResponse
+    public function store(StoreRequest $storeRequest, Order $order): JsonResponse
     {
-        $storeOrderResponse = $storeOrder->perform($storeRequest);
+        $storeOrderResponse = $order->store($storeRequest);
 
         return new JsonResponse(['uuid' => $storeOrderResponse]);
     }
